@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IManager
 {
     private IMovement movenment;
+    private Iwaper weapon;
 
     /// <summary>
     /// 캐릭터의 총괄메니저 역할
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour, IManager
     public void CustomUpdate(int param, float param2, Vector2 param3)
     {
         movenment?.Move(param3);
+        weapon?.Fire();
     }
 
     public void InitManager(int param, float param2, Vector2 param3)
@@ -24,15 +26,21 @@ public class PlayerController : MonoBehaviour, IManager
         {
             Debug.Log("PlayerController - InitManger() - movement 참조에 실패했다.");
         }
+       if(!TryGetComponent<Iwaper>(out weapon))
+        {
+            Debug.Log("PlayerController - InitManger() - weapon 참조에 실패했다.");
+        }
     }
 
     public void StartGame()
     {
        movenment?.SetEnable(true);
+       weapon?.SetEnable(true);
     }
 
     public void StopGame()
     {
         movenment?.SetEnable(false);
+        weapon?.SetEnable(false);
     }
 }

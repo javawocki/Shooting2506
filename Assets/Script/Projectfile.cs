@@ -99,7 +99,7 @@ public class Projectfile : MonoBehaviour,IMovement
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //얼리 리턴: 해당 매소드가 실해이 되면 안되는 상황을 먼제 체크 return
+        //얼리 리턴: 해당 매소드가 실행이 되면 안되는 상황을 먼제 체크 return
         //코드 작성하는 방법론중에 하나....
         if (!isInit)
         {

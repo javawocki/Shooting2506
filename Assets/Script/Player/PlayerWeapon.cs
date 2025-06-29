@@ -46,6 +46,13 @@ public class PlayerWeapon : MonoBehaviour,Iwaper
 
                 //투사체를 생성하고 발사를 해주면 됩니다.
                 //프로젝타일 메너저를 만들어서 오프제특 풀링 구현 후에 작성
+
+                ProjecfileManager.Inst.FireProjectile(ProjectileType.player01,
+                                                        fireTrans.position,
+                                                        fireDir,
+                                                        gameObject,
+                                                        1,
+                                                        10.0f);
             }
 
 
