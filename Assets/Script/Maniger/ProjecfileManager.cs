@@ -66,7 +66,7 @@ public class ProjecfileManager : Singletone<ProjecfileManager>
             pro.transform.position = spawnPos;
             pro.gameObject.SetActive(true);
 
-            pro.InitProjectile(direction, owner, damage, speed);
+            pro.InitProjectile(type,direction, owner, damage, speed);
         }
     }
     //큐에서 투사체 꺼내오는 메소드
@@ -78,5 +78,11 @@ public class ProjecfileManager : Singletone<ProjecfileManager>
         }
 
         return projectileQuenes[(int)type].Dequeue();
+    }
+
+    public void ReturnProjectilePool(Projectfile projectile,ProjectileType type)
+    {
+        projectile.gameObject.SetActive(false);
+        projectileQuenes[(int)type].Enqueue(projectile);
     }
 }

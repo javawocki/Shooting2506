@@ -64,8 +64,11 @@ public class Projectfile : MonoBehaviour,IMovement
     private string ownerTag;
     //프로젝타일의 종류 : prjectileManager를 구현한 뒤에 추가
 
-    public void InitProjectile(Vector2 newDir,GameObject newOwner,int newDamage, float newSpeed)
+    private ProjectileType type;
+
+    public void InitProjectile(ProjectileType type, Vector2 newDir,GameObject newOwner,int newDamage, float newSpeed)
     {
+        this.type = type;
         this.moveDir = newDir;
         this.owner = newOwner;
         this.damage = newDamage;
@@ -119,7 +122,7 @@ public class Projectfile : MonoBehaviour,IMovement
 
         if (collision.CompareTag("DestroyArea"))
         {
-            //투사체 파괴
+            ProjecfileManager.Inst.ReturnProjectilePool(this,type);
         }
         else
         {
@@ -127,6 +130,7 @@ public class Projectfile : MonoBehaviour,IMovement
             {
                 damaged.TakeDamage(owner, damage);
                 //투사체 파괴
+                ProjecfileManager.Inst.ReturnProjectilePool(this, type);
             }
         }
     }
