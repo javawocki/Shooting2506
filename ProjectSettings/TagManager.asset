@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - DestroyArea
+  - PickupItem
   layers:
   - Default
   - TransparentFX

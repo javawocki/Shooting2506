@@ -135,4 +135,19 @@ public class Projectfile : MonoBehaviour,IMovement
         }
     }
 
+    /*
+    //다른 클래스의 Action을 구독하고 이벤트가 발생했을 때 처리하는 로직의 예시
+    private void OnEnable()
+    {
+        Enemy.OnMonsterDied += CallBarck_EnemyDie; //구독신청
+    }
+    private void OnDisable()
+    {
+        Enemy.OnMonsterDied -= CallBarck_EnemyDie;
+    }
+    private void CallBarck_EnemyDie(Enemy diedEnemy)
+    {
+        Debug.Log($"{diedEnemy.gameObject.name} 이 사망 했습니다.");
+    }
+    */
 }

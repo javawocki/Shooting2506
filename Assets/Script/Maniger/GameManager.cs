@@ -8,6 +8,9 @@ public class GameManager : Singletone<GameManager>
 {
     private ScrollManger scrollManger;
     private PlayerController playController;
+    private EnemySpawnerManager enemySpawnerManager;
+
+    private MeteoliteSp meteoriteManager;
 
     private void Start()
     {
@@ -28,12 +31,18 @@ public class GameManager : Singletone<GameManager>
     {
         scrollManger = FindAnyObjectByType<ScrollManger>();
         playController = FindAnyObjectByType<PlayerController>();
+
+        enemySpawnerManager = FindAnyObjectByType<EnemySpawnerManager>();
+
+       // meteoriteManager = FindAnyObjectByType<MeteoliteSp>();
     }
 
     private void InitManagers()
     {
         scrollManger?.InitManager(0, 2.5f, Vector2.zero);
         playController?.InitManager(0,0f, Vector2.zero);
+        enemySpawnerManager?.InitManager(0, 0f,  Vector2.zero);
+       // meteoriteManager?.InitManager(0,2f, Vector2.zero);
     }
 
     IEnumerator StartGame()
@@ -42,6 +51,13 @@ public class GameManager : Singletone<GameManager>
 
         scrollManger?.StartGame();
         playController?.StartGame();
+
+        yield return new WaitForSeconds(3f);
+
+        enemySpawnerManager?.StartGame();
+
+        yield return new WaitForSeconds(10f);
+        //meteoriteManager?.StartGame();
     }
 
     
