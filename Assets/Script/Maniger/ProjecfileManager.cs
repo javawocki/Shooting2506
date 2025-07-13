@@ -5,12 +5,12 @@ using UnityEngine;
 
 public enum ProjectileType
 {
-    player01, 
-    player02, 
-    player03, 
-    boss01, 
-    boss02, 
-    boss03
+    fire01,
+    fire02,
+    fire03,
+    fire04,
+    fire05,
+    fire06
 }
 public class ProjecfileManager : Singletone<ProjecfileManager>
 {
