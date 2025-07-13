@@ -41,7 +41,7 @@ public class GameManager : Singletone<GameManager>
     {
         scrollManger?.InitManager(0, 2.5f, Vector2.zero);
         playController?.InitManager(0,0f, Vector2.zero);
-        enemySpawnerManager?.InitManager(0, 0f,  Vector2.zero);
+        enemySpawnerManager?.InitManager(1, 2.0f, Vector2.zero);
         meteoriteManager?.InitManager(0,2f, Vector2.zero);
     }
 

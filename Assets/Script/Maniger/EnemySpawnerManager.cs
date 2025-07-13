@@ -18,9 +18,9 @@ public class EnemySpawnerManager : MonoBehaviour,IManager
     [SerializeField] private GameObject[] spawnBossPrefabs;
 
     public static Action OnSpawnFinish; //일반몬스터의 스폰이 완료가 된 타이밍.
-
-    private float spawnDelta = 2f;//스폰 간격
+    
     private int spawnLevel = 0; //난이도
+    private float spawnDelta = 2f;//스폰 간격
     private int waveCount = 1; //웨이브 횟수 카운팅
 
     private GameObject obj;
@@ -33,8 +33,9 @@ public class EnemySpawnerManager : MonoBehaviour,IManager
 
     public void InitManager(int param, float param2, Vector2 param3)
     {
-        spawnDelta = 2f;
-        spawnLevel = 0;
+
+        spawnLevel = param;
+        spawnDelta = param2;
         waveCount = 10;
     }
 
