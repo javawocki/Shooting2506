@@ -91,5 +91,13 @@ public class Enemy : MonoBehaviour,IMovement,IDamaged
         if (collision.CompareTag("DestroyArea")) {
             Destroy(gameObject);
         }
+
+        if (collision.CompareTag("Player"))
+        {
+            if(collision.TryGetComponent<IDamaged>(out IDamaged target))
+            {
+                target.TakeDamage(gameObject, 1);
+            }
+        }
     }
 }
