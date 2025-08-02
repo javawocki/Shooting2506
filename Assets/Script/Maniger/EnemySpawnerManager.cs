@@ -36,7 +36,7 @@ public class EnemySpawnerManager : MonoBehaviour,IManager
 
         spawnLevel = param;
         spawnDelta = param2;
-        waveCount = 10;
+        waveCount = 2;
     }
 
     public void StartGame()
@@ -74,6 +74,43 @@ public class EnemySpawnerManager : MonoBehaviour,IManager
         yield return new WaitForSeconds(5f);
 
         //보스몬스터 스폰....
-        Debug.Log("일반 몬스터 스폰 종료 - 보스 생성해야됨.");
+        Debug.Log("=====================");
+        Debug.Log(spawnLevel);
+        Debug.Log("=====================");
+        obj = Instantiate(spawnBossPrefabs[spawnLevel]
+                                ,new Vector3(0f,8f,0f)
+                                ,Quaternion.identity);
+        //무기객체 생성하고,
+        //이름 설정하고,
+        //체력 설정하고.
+        //데이터 테이블....
+        Iwaper[] newWeapoons = new Iwaper[] { new Bow(), new Sword() };
+
+        foreach(var weapon in newWeapoons)
+        {
+            weapon.SetOwner(obj);
+        }
+
+        if(obj.TryGetComponent<BossAI>(out  bossAi))
+        {
+            bossAi.InitBoss($"무지막지한 보스{spawnLevel}",
+                            500 * (spawnLevel+1),
+                            newWeapoons);
+            bossAi.OnBossDied += HandBossDied;
+        }
+        //다음 웨이브를 준비
+
+        waveCount = 2;
+        spawnLevel++;
+
+    }
+
+    private BossAI bossAi;
+
+    private void HandBossDied()
+    {
+        bossAi.OnBossDied -= HandBossDied;
+
+        StartCoroutine("SpawnEnemys");
     }
 }

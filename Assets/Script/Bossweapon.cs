@@ -29,7 +29,7 @@ public abstract class Bossweapon : Iwaper
 
     public void SetOwner(GameObject owner)
     {
-       
+       this.owner = owner;
     }
 }
 
